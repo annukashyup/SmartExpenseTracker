@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Campus Credit Shop{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="{{ url_for('index') }}" class="brand">
+      <span class="brand-mark">CC</span>
+      Campus Credit Shop
+    </a>
+    <div class="nav-links">
+      {% if student %}
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('shop') }}">Shop</a>
+        <a href="{{ url_for('transactions') }}">History</a>
+        <a href="{{ url_for('semester_bill') }}">Bill</a>
+        <a href="{{ url_for('cart') }}" class="nav-cart">Cart {% if cart_count %}<span class="cart-badge">{{ cart_count }}</span>{% endif %}</a>
+        <a href="{{ url_for('logout') }}" class="btn-ghost-nav">Log out</a>
+      {% elif session.get('is_admin') %}
+        <a href="{{ url_for('admin_dashboard') }}">Admin Home</a>
+        <a href="{{ url_for('manage_products') }}">Products</a>
+        <a href="{{ url_for('manage_students') }}">Students</a>
+        <a href="{{ url_for('reports') }}">Reports</a>
+        <a href="{{ url_for('admin_logout') }}" class="btn-ghost-nav">Log out</a>
+      {% else %}
+        <a href="{{ url_for('index') }}#about">About</a>
+        <a href="{{ url_for('admin_login') }}">Admin</a>
+        <a href="{{ url_for('login') }}" class="btn-ghost-nav">Student Login</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-wrap" id="flash-wrap">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main>
+{% block content %}{% endblock %}
+</main>
+
+<footer>
+  <div class="container">
+    <span>Campus Credit Shop — shop now, pay at semester end.</span>
+    <span>Login is authenticated with your existing ERP ID.</span>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

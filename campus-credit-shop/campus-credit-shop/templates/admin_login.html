@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Admin Login — Campus Credit Shop{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="brand-mark">CC</div>
+    <h1>Admin / Shopkeeper</h1>
+    <p class="sub">Manage products, stock and student billing.</p>
+
+    <form method="POST" action="{{ url_for('admin_login') }}">
+      <div class="field">
+        <label for="admin_id">Admin ID</label>
+        <input type="text" id="admin_id" name="admin_id" placeholder="admin" required autofocus>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-dark btn-block">Log in</button>
+    </form>
+
+    <div class="auth-hint">Demo admin — ID: admin · password: admin123</div>
+
+    <p class="auth-footer">Student instead? <a href="{{ url_for('login') }}" style="color: var(--amber-dark); font-weight:600;">Student login</a></p>
+  </div>
+</div>
+{% endblock %}

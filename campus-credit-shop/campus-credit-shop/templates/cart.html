@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Cart — Campus Credit Shop{% endblock %}
+{% block content %}
+<section class="section-tight">
+  <div class="container">
+    <span class="eyebrow">Your cart</span>
+    <h1 class="section-title">Review before checkout</h1>
+
+    {% if items %}
+    <table class="ledger-table">
+      <thead>
+        <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.emoji }} {{ item.name }}</td>
+          <td class="mono">{{ item.qty }}</td>
+          <td class="mono">₹{{ "%.0f"|format(item.price) }}</td>
+          <td class="mono">₹{{ "%.0f"|format(item.price * item.qty) }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('remove_from_cart', cart_id=item.cart_id) }}">
+              <button type="submit" class="btn btn-outline btn-sm">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="ledger-card mt-24" style="max-width:420px; margin-left:auto;">
+      <div class="ledger-numbers" style="margin-top:0; gap:24px;">
+        <div class="ledger-number-block">
+          <div class="label">Order total</div>
+          <div class="value">₹{{ "%.0f"|format(total) }}</div>
+        </div>
+        <div class="ledger-number-block">
+          <div class="label">Available credit</div>
+          <div class="value {% if total > available %}danger{% else %}good{% endif %}">₹{{ "%.0f"|format(available) }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-24">
+      {% if total > available %}
+        <p class="small-note" style="color: var(--rust); font-weight:600;">This order exceeds your available credit. Remove an item to continue.</p>
+        <button class="btn btn-primary" disabled>Place order</button>
+      {% else %}
+        <form method="POST" action="{{ url_for('checkout') }}">
+          <button type="submit" class="btn btn-primary">Place order — pay at semester end</button>
+        </form>
+      {% endif %}
+      <p class="small-note mt-24"><a href="{{ url_for('shop') }}">← Continue shopping</a></p>
+    </div>
+
+    {% else %}
+    <div class="empty-state">
+      <span class="qi">🧺</span>
+      <p>Your cart is empty.</p>
+      <a href="{{ url_for('shop') }}" class="btn btn-primary mt-24">Browse the shop</a>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

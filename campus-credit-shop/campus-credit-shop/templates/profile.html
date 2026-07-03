@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Profile — Campus Credit Shop{% endblock %}
+{% block content %}
+<section class="section-tight">
+  <div class="container">
+    <span class="eyebrow">Account</span>
+    <h1 class="section-title">Profile</h1>
+
+    <div class="grid-2" style="max-width:640px;">
+      <div class="stat-card"><div class="label">Name</div><div class="value" style="font-size:1.1rem; font-family: var(--sans);">{{ student.name }}</div></div>
+      <div class="stat-card"><div class="label">ERP ID</div><div class="value">{{ student.erp_id }}</div></div>
+      <div class="stat-card"><div class="label">Department</div><div class="value" style="font-size:1.1rem; font-family: var(--sans);">{{ student.department }}</div></div>
+      <div class="stat-card"><div class="label">Semester</div><div class="value">{{ student.semester }}</div></div>
+      <div class="stat-card"><div class="label">Email</div><div class="value" style="font-size:1rem; font-family: var(--sans);">{{ student.email }}</div></div>
+      <div class="stat-card"><div class="label">Phone</div><div class="value">{{ student.phone }}</div></div>
+    </div>
+
+    <p class="small-note mt-24">Profile details are synced from your ERP account and can't be edited here.</p>
+  </div>
+</section>
+{% endblock %}

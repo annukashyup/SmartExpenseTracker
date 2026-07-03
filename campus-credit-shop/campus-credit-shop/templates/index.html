@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Campus Credit Shop — Shop now, pay at semester end{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">ERP-linked · no separate wallet needed</span>
+    <h1>Shop the campus, settle it once a semester.</h1>
+    <p>Log in with the ERP ID you already have. Buy stationery, lab gear, canteen food and merch on credit — every purchase lands on one running balance, billed at semester end.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('login') }}" class="btn btn-primary">Log in with ERP ID</a>
+      <a href="#about" class="btn btn-outline" style="border-color: rgba(246,241,231,0.4); color:#fff;">How it works</a>
+    </div>
+
+    <div class="hero-stub">
+      <div class="hero-stub-main">
+        <div class="hero-stub-label">Sample balance — Annu Kumari</div>
+        <div class="hero-stub-value">₹840.00</div>
+      </div>
+      <div class="hero-stub-side">
+        <div class="hero-stub-label">Limit</div>
+        <div class="hero-stub-value" style="font-size:1rem;">₹5,000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <span class="eyebrow">Why it exists</span>
+    <h2 class="section-title">No cash, no repeat UPI scans, one bill.</h2>
+    <p class="section-sub">Small campus purchases add up but rarely justify a payment app detour. Campus Credit Shop keeps a running ledger against your ERP ID and settles everything in one statement.</p>
+
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="icon-tag">🪪</div>
+        <h3>ERP ID login</h3>
+        <p>Sign in with the same ID your college already issued. No new account, no new password to remember.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon-tag">🛒</div>
+        <h3>Buy on credit</h3>
+        <p>Stationery, lab kits, canteen snacks or merch — every order is added to your balance instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon-tag">🧾</div>
+        <h3>One semester bill</h3>
+        <p>A single consolidated statement at semester end, itemised and ready to settle or export.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-tight" style="background:#fff; border-top:1px solid var(--card-border); border-bottom:1px solid var(--card-border);">
+  <div class="container">
+    <span class="eyebrow">Built-in guardrails</span>
+    <h2 class="section-title">A credit limit, not a blank cheque.</h2>
+    <p class="section-sub">Every student has a set credit ceiling. Try to spend past it and checkout stops you before it happens — no surprise dues.</p>
+    <div class="grid-2">
+      <div class="feature-card">
+        <h3>Live balance tracking</h3>
+        <p>Your dashboard shows exactly what you've spent, what's left, and how close you are to your limit.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Full transaction trail</h3>
+        <p>Every item, quantity and date is logged, so the semester bill never has a surprise line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section text-center">
+  <div class="container">
+    <h2 class="section-title">Ready to shop on your ERP ID?</h2>
+    <p class="section-sub" style="margin-left:auto; margin-right:auto;">Try the demo with one of the sample student accounts.</p>
+    <a href="{{ url_for('login') }}" class="btn btn-dark">Go to login</a>
+    <p class="small-note mt-24">Demo ERP ID: 2420666 · Password: pass123</p>
+  </div>
+</section>
+
+{% endblock %}

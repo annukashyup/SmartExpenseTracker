@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Manage Products — Campus Credit Shop{% endblock %}
+{% block content %}
+<section class="section-tight">
+  <div class="container">
+    <span class="eyebrow">Admin</span>
+    <h1 class="section-title">Manage products</h1>
+
+    <div class="feature-card mt-24" style="margin-bottom:36px;">
+      <h3>Add a new product</h3>
+      <form method="POST" action="{{ url_for('manage_products') }}" style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto; gap:10px; align-items:end; margin-top:14px;">
+        <input type="hidden" name="action" value="add">
+        <div class="field" style="margin-bottom:0;">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Product name" required>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Category</label>
+          <select name="category" required>
+            {% for c in categories %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Price (₹)</label>
+          <input type="number" name="price" min="1" step="1" required>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Stock</label>
+          <input type="number" name="stock" min="0" step="1" required>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Emoji</label>
+          <input type="text" name="emoji" placeholder="📦" maxlength="4">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </div>
+
+    <table class="ledger-table">
+      <thead>
+        <tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td>{{ p.emoji }} {{ p.name }}</td>
+          <td>{{ p.category }}</td>
+          <td class="mono">₹{{ "%.0f"|format(p.price) }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('manage_products') }}" style="display:flex; gap:6px;">
+              <input type="hidden" name="action" value="update_stock">
+              <input type="hidden" name="product_id" value="{{ p.id }}">
+              <input type="number" name="stock" value="{{ p.stock }}" min="0" style="width:70px;">
+              <button type="submit" class="btn btn-outline btn-sm">Update</button>
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="{{ url_for('manage_products') }}" onsubmit="return confirm('Delete {{ p.name }}?');">
+              <input type="hidden" name="action" value="delete">
+              <input type="hidden" name="product_id" value="{{ p.id }}">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
