@@ -1,0 +1,38 @@
+<!--
+    base.html
+    ---------
+    This is the common "layout" template. All other pages extend this
+    template so we don't have to repeat the same HTML (navbar, Bootstrap
+    links, etc.) again and again.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Smart Expense Tracker{% endblock %}</title>
+
+    <!-- Bootstrap 5 CSS (loaded from CDN) -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Our own custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Simple navigation bar -->
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('home') }}">💰 Smart Expense Tracker</a>
+            <a class="btn btn-outline-light btn-sm" href="{{ url_for('dashboard') }}">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Main page content (each page fills this in) -->
+    <div class="container mb-5">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Pie Chart - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">🥧 Expenses by Category</h2>
+
+<!--
+    This <img> tag's source points to the '/pie-chart-image' route.
+    That route generates a fresh pie chart using Matplotlib and
+    returns it as a PNG image every time this page is loaded.
+-->
+<div class="text-center">
+    <img src="{{ url_for('pie_chart_image') }}" alt="Expense Pie Chart" class="img-fluid border rounded">
+</div>
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary mt-4">Back to Dashboard</a>
+{% endblock %}

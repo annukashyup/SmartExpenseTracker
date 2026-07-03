@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row g-3">
+
+    <div class="col-md-4">
+        <a href="{{ url_for('add_expense') }}" class="btn btn-success w-100 py-3">
+            ➕ Add Expense
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('view_expenses') }}" class="btn btn-primary w-100 py-3">
+            📋 View Expenses
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('search_expense') }}" class="btn btn-info w-100 py-3 text-white">
+            🔍 Search Expense
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('category_report') }}" class="btn btn-warning w-100 py-3">
+            📊 Category Report
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('pie_chart') }}" class="btn btn-secondary w-100 py-3">
+            🥧 Pie Chart
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('view_expenses') }}" class="btn btn-danger w-100 py-3">
+            🗑️ Delete Expense
+        </a>
+    </div>
+
+</div>
+
+<p class="text-muted mt-3">
+    Note: Expenses can be deleted directly from the "View Expenses" page.
+</p>
+{% endblock %}

@@ -1,0 +1,18 @@
+/*
+    style.css
+    ---------
+    Small custom styles on top of Bootstrap 5.
+    Kept minimal on purpose - Bootstrap handles most of the styling.
+*/
+
+body {
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+table td, table th {
+    vertical-align: middle;
+}

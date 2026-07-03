@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="display-5 fw-bold">Welcome to Smart Expense Tracker 💸</h1>
+    <p class="lead mt-3">
+        A simple web app to add, view, search, and analyze your daily expenses.
+    </p>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg mt-3">
+        Go to Dashboard
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Category Report - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📊 Category-wise Report</h2>
+
+<table class="table table-bordered w-50">
+    <thead class="table-dark">
+        <tr>
+            <th>Category</th>
+            <th>Total Spent (₹)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category, total in totals.items() %}
+        <tr>
+            <td>{{ category }}</td>
+            <td>{{ "%.2f"|format(total) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr class="table-secondary fw-bold">
+            <td>Total</td>
+            <td>{{ "%.2f"|format(totals.values()|sum) }}</td>
+        </tr>
+    </tfoot>
+</table>
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+{% endblock %}
